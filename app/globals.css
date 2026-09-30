@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: theme("colors.cream");
+  color: theme("colors.ink");
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Warm ambient backdrop — friendly, premium, not corporate. */
+.app-bg {
+  background:
+    radial-gradient(60% 50% at 85% 0%, rgba(108, 77, 246, 0.10), transparent 60%),
+    radial-gradient(50% 40% at 5% 10%, rgba(255, 138, 61, 0.10), transparent 55%),
+    theme("colors.cream");
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5
+      text-base font-bold transition-all duration-200 active:scale-[0.97]
+      disabled:opacity-50 disabled:pointer-events-none select-none;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white shadow-lift hover:bg-brand-deep;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-ink border border-line shadow-card hover:border-brand/40;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-muted hover:text-ink hover:bg-white/60;
+  }
+  .surface {
+    @apply bg-card rounded-3xl border border-line shadow-card;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-semibold;
+  }
+  .field {
+    @apply w-full rounded-2xl border border-line bg-white px-4 py-3.5 text-lg
+      leading-relaxed text-ink placeholder:text-muted/60 outline-none
+      transition-shadow focus:ring-4 focus:ring-brand/15 focus:border-brand/40;
+  }
+}
+
+/* Thin, unobtrusive scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(28, 26, 38, 0.15) transparent;
+}
