@@ -51,7 +51,7 @@ export default function LandingPage() {
             </Link>
             <Link href="/ideas/new">
               <Button variant="secondary" className="w-full">
-                وش الفكرة؟
+                عندي فكرة
               </Button>
             </Link>
           </div>

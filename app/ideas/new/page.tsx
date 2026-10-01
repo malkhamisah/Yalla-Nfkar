@@ -30,7 +30,7 @@ function NewIdeaInner() {
       <div className="flex items-center justify-between pb-3">
         <div>
           <p className="text-sm text-muted">وضع الفكرة</p>
-          <h1 className="text-2xl font-extrabold">نحوّلها لفكرة 🌱</h1>
+          <h1 className="text-2xl font-extrabold">خلّنا نطوّرها سوا 🌱</h1>
         </div>
         <Link
           href="/home"

@@ -125,6 +125,10 @@ export function IdeaChat({
     onFinish(idea);
   }
 
+  // Before the first answer we show a warm, guided start; after that the
+  // conversation takes over. Same handlers, same steps — just a calmer entry.
+  const started = messages.some((m) => m.from === "user");
+
   return (
     <div className="flex flex-1 flex-col">
       {seedTheme && (
@@ -133,49 +137,82 @@ export function IdeaChat({
         </div>
       )}
 
-      <div className="flex flex-1 flex-col gap-3 pb-4">
-        <AnimatePresence initial={false}>
-          {messages.map((m, i) =>
-            m.from === "ai" ? (
-              <AiBubble key={i}>{m.text}</AiBubble>
-            ) : (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex justify-start"
-              >
-                <div className="max-w-[85%] rounded-3xl rounded-tr-lg bg-navy px-5 py-3 text-[16px] leading-relaxed text-white">
-                  {m.text}
-                </div>
-              </motion.div>
-            )
-          )}
-        </AnimatePresence>
-        {thinking && <ThinkingDots seed={stepIndex} />}
-        <div ref={bottomRef} />
-      </div>
-
-      {!done && (
-        <div className="sticky bottom-0 flex items-end gap-2 bg-gradient-to-t from-white via-white to-transparent pb-4 pt-2">
-          <textarea
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onKeyDown={(e) => {
-              if ((e.metaKey || e.ctrlKey) && e.key === "Enter") submit();
-            }}
-            placeholder="اكتب جوابك..."
-            rows={1}
-            className="field max-h-32 min-h-[52px] flex-1 resize-none py-3.5 text-base"
-          />
-          <Button
-            onClick={submit}
-            disabled={value.trim().length < 2 || thinking}
-            className="h-[52px] px-4"
-          >
-            <Send className="h-5 w-5 -scale-x-100" />
-          </Button>
+      {!started ? (
+        <div className="flex flex-1 flex-col justify-center gap-4 pb-6">
+          <p className="text-[15px] leading-relaxed text-muted">
+            عندك فكرة، ملاحظة، أو حتى شيء تتمنى يتغير؟ ابدأ من أي مكان.
+          </p>
+          <AiBubble>{messages[0].text}</AiBubble>
+          <div className="flex flex-col gap-2">
+            <textarea
+              autoFocus
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyDown={(e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === "Enter") submit();
+              }}
+              placeholder="مثلاً: أتمنى يكون الانتظار في العيادات أسهل..."
+              rows={4}
+              className="field resize-none text-base"
+            />
+            <p className="text-xs text-muted">ما تحتاج تكون الفكرة مكتملة.</p>
+            <Button
+              onClick={submit}
+              disabled={value.trim().length < 2 || thinking}
+              className="w-full"
+            >
+              خلنا نبدأ
+              <Send className="h-5 w-5 -scale-x-100" />
+            </Button>
+          </div>
         </div>
+      ) : (
+        <>
+          <div className="flex flex-1 flex-col gap-3 pb-4">
+            <AnimatePresence initial={false}>
+              {messages.map((m, i) =>
+                m.from === "ai" ? (
+                  <AiBubble key={i}>{m.text}</AiBubble>
+                ) : (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-start"
+                  >
+                    <div className="max-w-[85%] rounded-3xl rounded-tr-lg bg-navy px-5 py-3 text-[16px] leading-relaxed text-white">
+                      {m.text}
+                    </div>
+                  </motion.div>
+                )
+              )}
+            </AnimatePresence>
+            {thinking && <ThinkingDots seed={stepIndex} />}
+            <div ref={bottomRef} />
+          </div>
+
+          {!done && (
+            <div className="sticky bottom-0 flex items-end gap-2 bg-gradient-to-t from-white via-white to-transparent pb-4 pt-2">
+              <textarea
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                onKeyDown={(e) => {
+                  if ((e.metaKey || e.ctrlKey) && e.key === "Enter") submit();
+                }}
+                placeholder="اكتب جوابك..."
+                rows={1}
+                className="field max-h-32 min-h-[52px] flex-1 resize-none py-3.5 text-base"
+              />
+              <Button
+                onClick={submit}
+                disabled={value.trim().length < 2 || thinking}
+                className="h-[52px] px-4"
+              >
+                <Send className="h-5 w-5 -scale-x-100" />
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
