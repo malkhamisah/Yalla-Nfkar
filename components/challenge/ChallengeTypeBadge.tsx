@@ -1,7 +1,7 @@
 import type { ChallengeType } from "@/types";
 
 const META: Record<ChallengeType, { emoji: string; label: string }> = {
-  perspective_shift: { emoji: "🔄", label: "قلبها" },
+  perspective_shift: { emoji: "🔄", label: "تغيير المنظور" },
   observation: { emoji: "🔎", label: "لاحظ" },
   rapid_ideation: { emoji: "⚡", label: "٣ أفكار بسرعة" },
   reverse_thinking: { emoji: "🙃", label: "اعكسها" },
@@ -23,8 +23,9 @@ export function ChallengeTypeBadge({
   title?: string;
 }) {
   const m = META[type];
+  // A quiet category label, not a prominent command — the question is the hero.
   return (
-    <span className="pill bg-brand-soft text-brand-deep">
+    <span className="pill border border-line bg-white text-muted">
       <span>{m.emoji}</span>
       <span>{title ?? m.label}</span>
     </span>

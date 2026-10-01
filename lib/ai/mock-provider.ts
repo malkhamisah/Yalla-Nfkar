@@ -95,6 +95,100 @@ const LENSES: Lens[] = [
   },
 ];
 
+// ── Perspective-shift builder ─────────────────────────────────
+// Makes the "change your angle" move concrete and tied to the user's own
+// answer: reflect what they said, explain that we change the ASSUMPTION /
+// the path (not reverse their words), show a short example, then hand it back.
+// Deterministic. No trait claims.
+
+function shorten(s: string, n: number): string {
+  const t = s.replace(/\s+/g, " ").trim();
+  return t.length > n ? t.slice(0, n - 1).trim() + "…" : t;
+}
+
+const PS_OPENERS = ["حلو 👀", "تمام 👌", "زين،", "حلوة،"];
+
+// The ask that returns agency to the user (easy to answer).
+const PERSPECTIVE_ASK = "وش ممكن تضيف للفكرة؟";
+
+// Generic move — used when no theme matches. Explicitly not "reverse words".
+const GENERIC_PS_SHIFT =
+  "قلب المنظور مو إننا نعكس كلامك حرفيًا... بل نغيّر الافتراض نفسه. بدل ما نسأل «كيف نوصل لها بالطريقة المعتادة»، وش لو سألنا «وش أهم نتيجة نبيها، ونقدر نوصل لها بطريق ثاني»؟";
+const GENERIC_PS_EXAMPLE =
+  "مثلاً: لو الفكرة تحتاج شي كبير، فكّر بأصغر نسخة تعطيك نفس النتيجة.";
+
+interface PsLens {
+  match: RegExp;
+  shift: string;
+  example: string;
+}
+
+const PS_LENSES: PsLens[] = [
+  {
+    match: /حديقة|نبات|أخضر|خضرة|خضرا|زرع|شجر|ورد|بلكون|طبيعة/,
+    shift:
+      "خلنا نغيّر طريقة الوصول: بدل ما نفكر كيف نضيف حديقة كبيرة... وش لو خلّينا المكان يعطيك إحساس الحديقة حتى بمساحة صغيرة؟",
+    example: "مثلاً: زاوية خضرا صغيرة، أو نباتات معلّقة، أو ركن تقعد فيه الصبح.",
+  },
+  {
+    match: /انتظار|طابور|دور|ننتظر|استنى|استنّى/,
+    shift:
+      "بدل ما نحاول نقصّر الانتظار... وش لو غيّرنا تجربة الانتظار نفسها؟",
+    example: "مثلاً: شي يشغل بالك، أو إحساس واضح إن دورك قرّب.",
+  },
+  {
+    match: /وقت|زحمة|سيارة|طريق|مرور|تأخر|ساعة|دقيقة|بطيء/,
+    shift:
+      "بدل ما نحاول نقلّل الوقت أو الزحمة نفسها... وش لو غيّرنا إحساسنا بالوقت وهو يمر؟",
+    example: "مثلاً: نخلي وقت الطريق نفسه يسوّي لك شي تستمتع فيه.",
+  },
+  {
+    match: /فلوس|مال|سعر|غالي|رخيص|تكلفة|مصروف|ميزانية/,
+    shift:
+      "بدل ما نسأل كيف نوفّر أو نصرف أقل... وش لو سألنا وش القيمة اللي نبي نحس فيها فعلًا؟",
+    example: "مثلاً: تجربة وحدة تستاهل، بدل كم شي صغير ما نحس فيه.",
+  },
+  {
+    match: /جوال|تطبيق|شاشة|اشعار|إشعار|نوتفكيشن|سوشال/,
+    shift:
+      "بدل ما نغيّر التطبيق نفسه... وش لو غيّرنا اللحظة اللي نفتحه فيها؟",
+    example: "مثلاً: نخلي فتحه يحتاج خطوة بسيطة زيادة، فننتبه.",
+  },
+  {
+    match: /نوم|صباح|استيقاظ|متأخر|تعب|كسل|نشاط/,
+    shift:
+      "بدل ما نصلّح الصباح نفسه... وش لو بدينا من قرار الليلة اللي قبله؟",
+    example: "مثلاً: شي صغير نجهّزه بالليل يخلي الصباح أسهل.",
+  },
+  {
+    match: /شغل|عمل|وظيفة|مدير|دوام|مهمة|مهام|دراسة|مذاكرة|اختبار|جامعة/,
+    shift:
+      "بدل ما نسأل كيف ننجز أكثر... وش لو سألنا كيف نشوف أثر اللي ننجزه؟",
+    example: "مثلاً: نهاية كل يوم، نكتب شي واحد تحرّك للأمام.",
+  },
+  {
+    match: /أكل|طعام|مطعم|طبخ|وجبة|قهوة|كافيه/,
+    shift:
+      "بدل ما نغيّر الأكل نفسه... وش لو غيّرنا اللحظة اللي ناكل فيها؟",
+    example: "مثلاً: نخلي وجبة وحدة باليوم لها طقس هادئ خاص.",
+  },
+];
+
+function buildPerspective(text: string): {
+  reaction: string;
+  shift: string;
+  example: string;
+} {
+  const snip = shorten(text, 40) || "فكرتك";
+  const lens = PS_LENSES.find((l) => l.match.test(text));
+  const opener = pick(PS_OPENERS, "po|" + text);
+  return {
+    reaction: `${opener} «${snip}» — خلنا نشوفها من زاوية ثانية.`,
+    shift: lens?.shift ?? GENERIC_PS_SHIFT,
+    example: lens?.example ?? GENERIC_PS_EXAMPLE,
+  };
+}
+
 // Reaction pools by tone. Kept wide so repeats are rare across a session.
 const REACTIONS: Record<AiReactionKind, string[]> = {
   reflection: [
@@ -271,8 +365,27 @@ export class MockAIProvider implements AIProvider {
     const text = response.trim();
 
     const kind = KIND_BY_TYPE[challenge.type];
-    const lens = LENSES.find((l) => l.match.test(text));
     const f = readFeatures(text);
+
+    // Guided, grounded flow for the perspective-shift challenge: make the move
+    // concrete and tied to the user's own words, clarify that we change the
+    // assumption (not reverse words), show one example, then hand it back.
+    // No personality/trait claims here.
+    if (challenge.type === "perspective_shift") {
+      const p = buildPerspective(text);
+      return {
+        reaction: p.reaction,
+        kind,
+        observation: "",
+        perspectiveShift: p.shift,
+        shiftExample: p.example,
+        followUpQuestion: PERSPECTIVE_ASK,
+        suggestedTraitSignals: deriveSignals(challenge.type, text, f),
+        nextChallengeType: NEXT_BY_TYPE[challenge.type],
+      };
+    }
+
+    const lens = LENSES.find((l) => l.match.test(text));
 
     // Distinct seeds per field so reaction/observation never echo each other,
     // and so consecutive challenges (different id) diverge.

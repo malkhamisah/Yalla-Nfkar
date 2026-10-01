@@ -94,7 +94,7 @@ export function ChallengeRunner({
     <div className="flex flex-col gap-4">
       {/* Challenge header */}
       <div className="flex items-center justify-between">
-        <ChallengeTypeBadge type={challenge.type} title={challenge.title} />
+        <ChallengeTypeBadge type={challenge.type} />
         <span className="pill bg-white text-muted border border-line">
           ~{challenge.estimatedSeconds} ثانية
         </span>
@@ -153,6 +153,18 @@ export function ChallengeRunner({
               <span className="font-bold text-ink">{ai.perspectiveShift}</span>
             </AiBubble>
 
+            {ai.shiftExample && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.42 }}
+                className="flex flex-col gap-1 px-1"
+              >
+                <p className="text-sm text-muted">{ai.shiftExample}</p>
+                <p className="font-bold text-ink">{ai.followUpQuestion}</p>
+              </motion.div>
+            )}
+
             {phase === "shift" && (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -164,7 +176,7 @@ export function ChallengeRunner({
                   autoFocus
                   value={followUp}
                   onChange={(e) => setFollowUp(e.target.value)}
-                  placeholder="كمل الفكرة من هنا..."
+                  placeholder="أضف فكرتك هنا... ما يحتاج تكون كاملة"
                   rows={3}
                   className="field resize-none"
                 />

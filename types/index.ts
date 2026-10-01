@@ -120,6 +120,8 @@ export interface AnalyzeResponseOutput {
   kind: AiReactionKind;
   observation: string;
   perspectiveShift: string;
+  // Optional concrete, illustrative example of the shift — never a model answer.
+  shiftExample?: string;
   followUpQuestion: string;
   suggestedTraitSignals: BehavioralSignal[];
   nextChallengeType: ChallengeType;

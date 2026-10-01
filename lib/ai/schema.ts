@@ -65,6 +65,10 @@ export const AnalyzeResponseSchema = {
       kind,
       observation: str(o.observation),
       perspectiveShift: str(o.perspectiveShift, "طيب... لو قلبناها؟"),
+      shiftExample:
+        typeof o.shiftExample === "string" && o.shiftExample.trim()
+          ? o.shiftExample.trim()
+          : undefined,
       followUpQuestion: str(o.followUpQuestion, "وش أول خطوة صغيرة نجربها؟"),
       suggestedTraitSignals: signals.length ? signals : ["exploration"],
       nextChallengeType: next,
