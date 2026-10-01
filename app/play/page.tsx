@@ -156,13 +156,13 @@ function PlayInner() {
 
           {theme && (
             <Link href="/ideas/new" className="mt-4 block">
-              <div className="surface border-dashed border-brand/40 bg-brand-soft/50 p-5">
-                <p className="font-bold text-brand-deep">لحظة...</p>
-                <p className="mt-1 text-[15px] leading-relaxed">
+              <div className="surface border-dashed border-sky/50 bg-sky-soft/60 p-5">
+                <p className="font-bold text-ink">لحظة...</p>
+                <p className="mt-1 text-[15px] leading-relaxed text-ink">
                   رجعت لموضوع «{theme}» أكثر من مرة. هذي تستاهل أكثر من مجرد
                   لعبة — نحوّلها فكرة؟
                 </p>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand">
+                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-action">
                   يلا نحولها
                   <ArrowLeft className="h-4 w-4" />
                 </span>

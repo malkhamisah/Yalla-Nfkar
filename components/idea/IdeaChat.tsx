@@ -128,7 +128,7 @@ export function IdeaChat({
   return (
     <div className="flex flex-1 flex-col">
       {seedTheme && (
-        <div className="mb-3 rounded-2xl bg-brand-soft/60 px-4 py-2 text-sm text-brand-deep">
+        <div className="mb-3 rounded-2xl bg-sky-soft/70 px-4 py-2 text-sm text-ink">
           خلنا نطوّر موضوع «{seedTheme}» اللي رجعت له كثير 👀
         </div>
       )}
@@ -145,7 +145,7 @@ export function IdeaChat({
                 animate={{ opacity: 1, y: 0 }}
                 className="flex justify-start"
               >
-                <div className="max-w-[85%] rounded-3xl rounded-tr-lg bg-ink px-5 py-3 text-[16px] leading-relaxed text-cream">
+                <div className="max-w-[85%] rounded-3xl rounded-tr-lg bg-navy px-5 py-3 text-[16px] leading-relaxed text-white">
                   {m.text}
                 </div>
               </motion.div>
@@ -157,7 +157,7 @@ export function IdeaChat({
       </div>
 
       {!done && (
-        <div className="sticky bottom-0 flex items-end gap-2 bg-gradient-to-t from-cream via-cream to-transparent pb-4 pt-2">
+        <div className="sticky bottom-0 flex items-end gap-2 bg-gradient-to-t from-white via-white to-transparent pb-4 pt-2">
           <textarea
             value={value}
             onChange={(e) => setValue(e.target.value)}

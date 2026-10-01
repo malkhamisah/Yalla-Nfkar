@@ -209,14 +209,14 @@ export default function IdeaDetailPage() {
             {SHARE_ACTIONS.map((a) => (
               <span
                 key={a}
-                className="pill border border-line bg-cream text-ink"
+                className="pill border border-line bg-white text-ink"
               >
                 {a}
               </span>
             ))}
           </div>
           {shared ? (
-            <div className="mt-4 flex items-center gap-2 rounded-2xl bg-mint-soft px-4 py-3 font-semibold text-mint">
+            <div className="mt-4 flex items-center gap-2 rounded-2xl bg-sky-soft px-4 py-3 font-semibold text-sky-deep">
               <Check className="h-4 w-4" />
               حفظناها وجاهزة تنشارك بهالروح.
             </div>

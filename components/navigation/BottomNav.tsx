@@ -36,8 +36,8 @@ export function BottomNav() {
                     "flex h-11 w-11 items-center justify-center rounded-2xl transition-all",
                     center
                       ? active
-                        ? "bg-brand text-white shadow-lift -translate-y-3 scale-110"
-                        : "bg-brand text-white shadow-lift -translate-y-3"
+                        ? "bg-action text-white shadow-action -translate-y-3 scale-110"
+                        : "bg-action text-white shadow-action -translate-y-3"
                       : active
                         ? "bg-brand-soft text-brand"
                         : "text-muted"

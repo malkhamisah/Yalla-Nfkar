@@ -38,7 +38,7 @@ export default function HomePage() {
             </h1>
           </div>
           {streak > 0 && (
-            <span className="pill bg-sun-soft text-sun">
+            <span className="pill bg-warm-soft text-warm-deep">
               <Flame className="h-4 w-4" />
               {streak} أيام
             </span>
@@ -58,13 +58,13 @@ export default function HomePage() {
                 تحدي اليوم
               </span>
               <p className="mt-4 text-2xl font-extrabold leading-snug">
-                جاهز تاخذ لفة جديدة؟
+                عندي لك سؤال غريب شوي...
               </p>
               <p className="mt-1 text-white/80">
-                تحدي صغير... وزاوية ما كانت ببالك.
+                تحدي صغير، وزاوية ما كانت ببالك.
               </p>
-              <div className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 font-bold text-brand">
-                يلا
+              <div className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-action px-5 py-3 font-bold text-white shadow-action">
+                يلا نبدأ
                 <ArrowLeft className="h-5 w-5" />
               </div>
             </div>
@@ -76,15 +76,13 @@ export default function HomePage() {
       {theme && (
         <Reveal delay={0.1}>
           <Link href="/ideas/new" className="mt-4 block">
-            <div className="surface border-dashed border-brand/40 bg-brand-soft/50 p-5">
-              <p className="font-bold text-brand-deep">
-                لحظة... 👀
-              </p>
-              <p className="mt-1 text-[15px] leading-relaxed">
+            <div className="surface border-dashed border-sky/50 bg-sky-soft/60 p-5">
+              <p className="font-bold text-ink">لحظة... 👀</p>
+              <p className="mt-1 text-[15px] leading-relaxed text-ink">
                 واضح إن عندك موضوع ترجع له كثير حول «{theme}». وش رايك نجرب
                 نحوله لفكرة فعلية؟
               </p>
-              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand">
+              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-action">
                 يلا نحولها
                 <ArrowLeft className="h-4 w-4" />
               </span>
@@ -114,7 +112,7 @@ export default function HomePage() {
           {lastIdea ? (
             <Link href={`/ideas/${lastIdea.id}`}>
               <div className="surface flex items-center gap-3 p-4">
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-mint-soft text-xl">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-soft text-xl">
                   💡
                 </span>
                 <div className="min-w-0 flex-1">

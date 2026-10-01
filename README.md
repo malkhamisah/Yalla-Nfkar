@@ -41,6 +41,19 @@ types/               domain + AI + recommendation contracts
 hooks/               useProgress
 ```
 
+### Brand & audience
+
+- **Audience** (`lib/config/product.ts`): primary 18–35, Saudi, Najdi-lite — the
+  experience is optimized for curiosity-first play; 36–45 is a welcomed
+  secondary audience, never the thing the MVP is built around. Gender-neutral.
+- **Direction:** Brilliant × Headspace × Yalla Nfkar — Smart + Playful + Warm +
+  Premium. White + Blue dominant; Orange = action; Sky = discovery/insight.
+- **Official palette** (`tailwind.config.ts`): Primary Blue `#0E1F64`, Action
+  Orange `#EE5800`, Sky Blue `#50C7E7`, Warm Orange `#F78C2C`, Dark Navy
+  `#1E2A44`, Soft Gray `#DBE2EA`, White. Each has a fixed role — CTAs are the
+  only place Action Orange fills, the perspective-shift/thinking moments are the
+  only place Sky leads.
+
 ### Key design decisions
 
 - **UI never imports an AI provider.** It calls `/api/ai/*`, so keys stay on

@@ -31,7 +31,7 @@ export function StageProgress({ xp }: { xp: number }) {
 
       <div className="mt-4 h-2.5 w-full overflow-hidden rounded-full bg-brand-soft">
         <motion.div
-          className="h-full rounded-full bg-brand"
+          className="h-full rounded-full bg-warm"
           initial={{ width: 0 }}
           animate={{ width: `${pct}%` }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}

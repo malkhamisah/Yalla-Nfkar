@@ -150,9 +150,7 @@ export function ChallengeRunner({
               </AiBubble>
             )}
             <AiBubble delay={0.3} tone="shift">
-              <span className="font-bold text-brand-deep">
-                {ai.perspectiveShift}
-              </span>
+              <span className="font-bold text-ink">{ai.perspectiveShift}</span>
             </AiBubble>
 
             {phase === "shift" && (
@@ -233,7 +231,7 @@ export function ChallengeRunner({
 function UserEcho({ text }: { text: string }) {
   return (
     <div className={cn("flex justify-start")}>
-      <div className="max-w-[85%] rounded-3xl rounded-tr-lg bg-ink px-5 py-3 text-[16px] leading-relaxed text-cream">
+      <div className="max-w-[85%] rounded-3xl rounded-tr-lg bg-navy px-5 py-3 text-[16px] leading-relaxed text-white">
         {text}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { Sparkles, Eye, Lightbulb, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/Reveal";
 import { LandingDemo } from "@/components/landing/LandingDemo";
+import { FlipMark } from "@/components/brand/FlipMark";
 
 export default function LandingPage() {
   return (
@@ -10,9 +11,12 @@ export default function LandingPage() {
       <div className="mx-auto w-full max-w-[440px] px-5 py-8">
         {/* Hero */}
         <Reveal>
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-brand shadow-card">
-            <Sparkles className="h-4 w-4" />
-            يلا نفكر
+          <div className="mb-3 flex items-center justify-between">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-brand shadow-card">
+              <Sparkles className="h-4 w-4" />
+              يلا نفكر
+            </div>
+            <FlipMark className="h-16 w-16 animate-float" />
           </div>
         </Reveal>
 

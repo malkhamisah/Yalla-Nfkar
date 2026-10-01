@@ -66,15 +66,13 @@ export function LandingDemo() {
             className="flex flex-col gap-3"
           >
             <div className="flex justify-start">
-              <div className="max-w-[85%] rounded-3xl rounded-tr-lg bg-ink px-4 py-2.5 text-[15px] text-cream">
+              <div className="max-w-[85%] rounded-3xl rounded-tr-lg bg-navy px-4 py-2.5 text-[15px] text-white">
                 {value}
               </div>
             </div>
             <AiBubble>{ai.reaction}</AiBubble>
             <AiBubble tone="shift" delay={0.2}>
-              <span className="font-bold text-brand-deep">
-                {ai.perspectiveShift}
-              </span>
+              <span className="font-bold text-ink">{ai.perspectiveShift}</span>
             </AiBubble>
             <Link href="/onboarding" className="mt-1">
               <Button className="w-full">

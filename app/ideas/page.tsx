@@ -10,9 +10,9 @@ import { getIdeas } from "@/services/store";
 import type { Idea, IdeaStatus } from "@/types";
 
 const STATUS_LABEL: Record<IdeaStatus, { label: string; cls: string }> = {
-  spark: { label: "شرارة", cls: "bg-sun-soft text-sun" },
+  spark: { label: "شرارة", cls: "bg-warm-soft text-warm-deep" },
   shaping: { label: "قيد التشكيل", cls: "bg-brand-soft text-brand-deep" },
-  ready_to_test: { label: "جاهزة للتجربة", cls: "bg-mint-soft text-mint" },
+  ready_to_test: { label: "جاهزة للتجربة", cls: "bg-sky-soft text-sky-deep" },
 };
 
 export default function IdeasPage() {

@@ -11,26 +11,25 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-arabic)", "system-ui", "sans-serif"],
       },
+      // ── Official MVP brand palette ──────────────────────────
+      // White + Blue dominant · Orange = action · Sky = discovery.
       colors: {
-        // Brand palette — warm, playful, premium
-        cream: "#FBF7F0",
-        ink: "#1C1A26",
-        muted: "#6B6577",
-        brand: {
-          DEFAULT: "#6C4DF6", // curious violet
-          soft: "#EEE9FF",
-          deep: "#4B2ED4",
-        },
-        sun: {
-          DEFAULT: "#FF8A3D", // warm accent
-          soft: "#FFEBDC",
-        },
-        mint: {
-          DEFAULT: "#1FC7A8", // success / reward
-          soft: "#DBF6EF",
-        },
+        // Primary Brand — intelligence, confidence, calm.
+        brand: { DEFAULT: "#0E1F64", deep: "#0A1646", soft: "#E9EDF7" },
+        // Action / Energy — "اضغط وجرب". Primary CTAs only.
+        action: { DEFAULT: "#EE5800", deep: "#C94B00", soft: "#FCE8DB" },
+        // Playful / Insight — AI insights, perspective shifts, surprise.
+        sky: { DEFAULT: "#50C7E7", deep: "#0B6A86", soft: "#E3F6FC" },
+        // Warm accent — used sparingly (progress, decorative).
+        warm: { DEFAULT: "#F78C2C", deep: "#A65412", soft: "#FDEBD7" },
+        // Dark navy — surfaces & depth instead of pure black.
+        navy: "#1E2A44",
+        // Text
+        ink: "#15213B",
+        muted: "#5B6680",
+        // Neutrals
+        line: "#DBE2EA",
         card: "#FFFFFF",
-        line: "#ECE7DE",
       },
       borderRadius: {
         xl: "1.25rem",
@@ -38,9 +37,12 @@ const config: Config = {
         "3xl": "2.25rem",
       },
       boxShadow: {
-        soft: "0 10px 40px -12px rgba(28, 26, 38, 0.18)",
-        lift: "0 20px 60px -18px rgba(108, 77, 246, 0.35)",
-        card: "0 2px 18px -6px rgba(28, 26, 38, 0.12)",
+        // Navy-tinted, soft — calm depth on a white canvas.
+        soft: "0 10px 40px -12px rgba(14, 31, 100, 0.16)",
+        lift: "0 18px 48px -16px rgba(14, 31, 100, 0.26)",
+        card: "0 2px 18px -6px rgba(14, 31, 100, 0.10)",
+        // Energy glow reserved for the primary action.
+        action: "0 16px 38px -14px rgba(238, 88, 0, 0.42)",
       },
       keyframes: {
         "fade-up": {
@@ -50,6 +52,10 @@ const config: Config = {
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
+        },
+        flip: {
+          "0%": { transform: "rotateY(0deg)" },
+          "100%": { transform: "rotateY(180deg)" },
         },
         shimmer: {
           "0%": { backgroundPosition: "200% 0" },

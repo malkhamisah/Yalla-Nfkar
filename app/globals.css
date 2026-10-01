@@ -13,18 +13,18 @@ body {
 }
 
 body {
-  background-color: theme("colors.cream");
+  background-color: #ffffff;
   color: theme("colors.ink");
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Warm ambient backdrop — friendly, premium, not corporate. */
+/* White-dominant canvas with the faintest blue/sky breath — calm, premium. */
 .app-bg {
   background:
-    radial-gradient(60% 50% at 85% 0%, rgba(108, 77, 246, 0.10), transparent 60%),
-    radial-gradient(50% 40% at 5% 10%, rgba(255, 138, 61, 0.10), transparent 55%),
-    theme("colors.cream");
+    radial-gradient(62% 48% at 88% -4%, rgba(80, 199, 231, 0.10), transparent 60%),
+    radial-gradient(52% 40% at 2% 4%, rgba(14, 31, 100, 0.05), transparent 55%),
+    #ffffff;
 }
 
 @layer components {
@@ -33,14 +33,16 @@ body {
       text-base font-bold transition-all duration-200 active:scale-[0.97]
       disabled:opacity-50 disabled:pointer-events-none select-none;
   }
+  /* Primary CTA = Action Orange. "اضغط وجرب." */
   .btn-primary {
-    @apply btn bg-brand text-white shadow-lift hover:bg-brand-deep;
+    @apply btn bg-action text-white shadow-action hover:bg-action-deep;
   }
+  /* Calm, confident secondary — white with a soft gray edge. */
   .btn-secondary {
-    @apply btn bg-white text-ink border border-line shadow-card hover:border-brand/40;
+    @apply btn bg-white text-brand border border-line shadow-card hover:border-brand/40;
   }
   .btn-ghost {
-    @apply btn bg-transparent text-muted hover:text-ink hover:bg-white/60;
+    @apply btn bg-transparent text-muted hover:text-ink hover:bg-brand/5;
   }
   .surface {
     @apply bg-card rounded-3xl border border-line shadow-card;
@@ -51,12 +53,12 @@ body {
   .field {
     @apply w-full rounded-2xl border border-line bg-white px-4 py-3.5 text-lg
       leading-relaxed text-ink placeholder:text-muted/60 outline-none
-      transition-shadow focus:ring-4 focus:ring-brand/15 focus:border-brand/40;
+      transition-shadow focus:ring-4 focus:ring-sky/25 focus:border-sky/50;
   }
 }
 
 /* Thin, unobtrusive scrollbars */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(28, 26, 38, 0.15) transparent;
+  scrollbar-color: rgba(14, 31, 100, 0.15) transparent;
 }
