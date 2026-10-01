@@ -8,6 +8,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { useProgress } from "@/hooks/useProgress";
 import { STAGES, stageForXp } from "@/lib/progression";
 import { resetAll } from "@/services/store";
+import { arabicPoints } from "@/lib/utils";
 import type { BehavioralSignal } from "@/types";
 
 // Gentle behavioral notes — never a personality test, never a score.
@@ -56,7 +57,7 @@ export default function ProfilePage() {
             {stage.emoji}
           </div>
           <h1 className="mt-4 text-2xl font-extrabold">{stage.title}</h1>
-          <p className="text-muted">{progress.xp} نقطة فضول</p>
+          <p className="text-muted">{arabicPoints(progress.xp)}</p>
         </div>
       </Reveal>
 
@@ -100,7 +101,7 @@ export default function ProfilePage() {
                     <p className="font-bold">{s.title}</p>
                     {!unlocked && (
                       <p className="text-xs text-muted">
-                        تنفتح عند {s.minXp} نقطة فضول
+                        تنفتح عند {arabicPoints(s.minXp)}
                       </p>
                     )}
                   </div>

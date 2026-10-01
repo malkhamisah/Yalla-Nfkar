@@ -10,6 +10,7 @@ import { StageProgress } from "@/components/game/StageProgress";
 import { useProgress } from "@/hooks/useProgress";
 import { touchUser, getIdeas, detectRecurringTheme } from "@/services/store";
 import { track } from "@/lib/analytics";
+import { arabicDays } from "@/lib/utils";
 import type { Idea } from "@/types";
 
 export default function HomePage() {
@@ -40,7 +41,7 @@ export default function HomePage() {
           {streak > 0 && (
             <span className="pill bg-warm-soft text-warm-deep">
               <Flame className="h-4 w-4" />
-              {streak} أيام
+              {arabicDays(streak)}
             </span>
           )}
         </div>

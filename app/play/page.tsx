@@ -30,7 +30,7 @@ import {
   saveSession,
 } from "@/services/store";
 import { track } from "@/lib/analytics";
-import { uid } from "@/lib/utils";
+import { uid, arabicChallenges } from "@/lib/utils";
 import { useProgress } from "@/hooks/useProgress";
 import type { Challenge } from "@/types";
 
@@ -143,8 +143,8 @@ function PlayInner() {
               خلاص، مخك أخذ لفة اليوم
             </h1>
             <p className="mt-2 text-muted">
-              كمّلت {completed} {completed === 1 ? "تحدي" : "تحديات"} اليوم.
-              عندي لك تحدي أغرب المرة الجاية 👀
+              كمّلت {arabicChallenges(completed)} اليوم. عندي لك تحدي أغرب
+              المرة الجاية 👀
             </p>
           </div>
 

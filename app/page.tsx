@@ -4,11 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/Reveal";
 import { LandingDemo } from "@/components/landing/LandingDemo";
 import { FlipMark } from "@/components/brand/FlipMark";
+import { ReturningBar } from "@/components/landing/ReturningBar";
 
 export default function LandingPage() {
   return (
     <div className="app-bg min-h-[100dvh]">
       <div className="mx-auto w-full max-w-[440px] px-5 py-8">
+        {/* Clear path back for returning users (first-timers see nothing) */}
+        <ReturningBar />
+
         {/* Hero */}
         <Reveal>
           <div className="mb-3 flex items-center justify-between">
